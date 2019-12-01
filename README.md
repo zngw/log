@@ -10,6 +10,9 @@ import (
 )
 
 func main() {
+	// 不设置显示tag
+	// log.Init(nil)
+	
 	// 初始化日志
 	log.Init([]string{"sys","net"})
 

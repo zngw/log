@@ -22,7 +22,7 @@ var showTag map[string]bool
 var logFolder string
 
 // 初始化日志
-// tags 显示的tag
+// tags 显示的tag, nil为不设置显示tags
 func Init(tags []string) {
 	// 获取程序运行文件路径
 	dir, file := filepath.Split(os.Args[0])
@@ -37,14 +37,21 @@ func Init(tags []string) {
 	}
 
 	// 根据配置显示tag
-	showTag = make(map[string]bool)
-	for _, tag := range tags {
-		showTag[tag] = true
+	if tags!=nil {
+		showTag = make(map[string]bool)
+		for _, tag := range tags {
+			showTag[tag] = true
+		}
 	}
 }
 
 // 重新设置显示标志
 func ReplaceShowTag(tags []string) {
+	if tags==nil {
+		showTag = nil
+		return
+	}
+
 	showTag = make(map[string]bool)
 	for _, tag := range tags {
 		showTag[tag] = true
