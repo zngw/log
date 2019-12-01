@@ -14,7 +14,10 @@ func main() {
 	// log.Init(nil)
 	
 	// 初始化日志
-	log.Init([]string{"sys","net"})
+	err := log.Init([]string{"sys","net"})
+	if err != nil {
+		panic(err)
+	}
 
 	// 输出日志: 2019-11-15 01:06:01.215 [TRACE] - [Tag:sys] [Hello World]
 	log.Trace("sys","Hello World")

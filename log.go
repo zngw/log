@@ -23,7 +23,7 @@ var logFolder string
 
 // 初始化日志
 // tags 显示的tag, nil为不设置显示tags
-func Init(tags []string) {
+func Init(tags []string) (err error) {
 	// 获取程序运行文件路径
 	dir, file := filepath.Split(os.Args[0])
 	logFolder = dir + "/logs/"
@@ -34,6 +34,7 @@ func Init(tags []string) {
 	err := seelog.ReplaceLogger(logger)
 	if err != nil {
 		fmt.Println("log init error.", err)
+		return 
 	}
 
 	// 根据配置显示tag
