@@ -31,7 +31,7 @@ func Init(tags []string) (err error) {
 	// 配置日志文件，运行文件所在目录/logs/文件名
 	fileCfg := strings.Replace(fileConfig, "./logs/log", logFolder+file, -1)
 	logger, _ := seelog.LoggerFromConfigAsString(fileCfg)
-	err := seelog.ReplaceLogger(logger)
+	err = seelog.ReplaceLogger(logger)
 	if err != nil {
 		fmt.Println("log init error.", err)
 		return 
@@ -44,6 +44,8 @@ func Init(tags []string) (err error) {
 			showTag[tag] = true
 		}
 	}
+
+	return
 }
 
 // 重新设置显示标志
