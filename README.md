@@ -11,10 +11,11 @@ import (
 
 func main() {
 	// 不设置显示tag
-	// log.Init(nil)
+	// log.Init("",nil)
 	
 	// 初始化日志
-	err := log.Init([]string{"sys","net"})
+	dir, file := filepath.Split(os.Args[0])
+	err := log.Init(dir+"/logs/"+file,[]string{"sys","net"})
 	if err != nil {
 		panic(err)
 	}

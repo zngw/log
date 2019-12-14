@@ -11,8 +11,6 @@ package log
 import (
 	"fmt"
 	"github.com/cihub/seelog"
-	"os"
-	"path/filepath"
 	"runtime"
 	"strings"
 )
@@ -22,15 +20,14 @@ var showTag map[string]bool
 var logFolder string
 
 // 初始化日志
-// tags 显示的tag, nil为不设置显示tags
-func Init(tags []string) (err error) {
-	// 获取程序运行文件路径
-	dir, file := filepath.Split(os.Args[0])
-	logFolder = dir + "/logs/"
-
+// file 日志文件名 ""为logs/log.info.2016-02-01;tags 显示的tag, nil为不设置显示tags
+func Init(file string, tags []string) (err error) {
 	// 配置日志文件，运行文件所在目录/logs/文件名
-	fileCfg := strings.Replace(fileConfig, "./logs/log", logFolder+file, -1)
-	logger, _ := seelog.LoggerFromConfigAsString(fileCfg)
+	if file != nil {
+		fileConfig = strings.Replace(fileConfig, "./logs/log", file, -1)
+	}
+
+	logger, _ := seelog.LoggerFromConfigAsString(fileConfig)
 	err = seelog.ReplaceLogger(logger)
 	if err != nil {
 		fmt.Println("log init error.", err)
