@@ -23,7 +23,7 @@ var logFolder string
 // file 日志文件名 ""为logs/log.info.2016-02-01;tags 显示的tag, nil为不设置显示tags
 func Init(file string, tags []string) (err error) {
 	// 配置日志文件，运行文件所在目录/logs/文件名
-	if file != nil {
+	if len(file) == 0 {
 		fileConfig = strings.Replace(fileConfig, "./logs/log", file, -1)
 	}
 
