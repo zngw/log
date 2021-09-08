@@ -14,22 +14,18 @@ func main() {
 	// log.Init("",nil)
 	
 	// 初始化日志
-	dir, file := filepath.Split(os.Args[0])
-	err := log.Init(dir+"/logs/"+file,[]string{"sys","net"})
-	if err != nil {
-		panic(err)
-	}
+	log.InitLog("file","logs/file.log","info",30,true,[]string{"sys","net"})
 
-	// 输出日志: 2019-11-15 01:06:01.215 [D] [main.go:23]  [Tag:sys] [Hello World]
+	// 输出日志: 2019-11-15 01:06:01.215 [D] [main.go:19]  [Tag:sys] [Hello World]
 	log.Trace("sys","Hello World")
 
-	// 输出日志: 2019-11-15 01:06:01.215 [D] [main.go:27]  [Tag:net] [Hello Golang]
+	// 输出日志: 2019-11-15 01:06:01.215 [D] [main.go:22]  [Tag:net] [Hello Golang]
 	log.Trace("net","Hello Golang")
 
 	// 这条日志不在显示的tag内，故不输出
 	log.Trace("test","Hello zngw")
 
-	// 输出错误日志: 2019-11-15 01:06:01.215 [E] [main.go:33]  [Tag:net] [Error]
+	// 输出错误日志: 2019-11-15 01:06:01.215 [E] [main.go:28]  [Tag:net] [Error]
 	log.Error("sys","Error")
 }
 

@@ -37,6 +37,12 @@ func Init(logFile string, tags []string) (err error) {
 }
 
 // 初始化日志参数
+// logWay: file-输出到文件；console-输出到控制台
+// logFile: 日志文件
+// logLevel: 日志等级
+// maxDays: 日志保留天数
+// disableLogColor: 是否显示颜色
+// tags: 日志显示tag
 func InitLog(logWay string, logFile string, logLevel string, maxDays int64, disableLogColor bool, tags []string) {
 	setLogFile(logWay, logFile, maxDays, disableLogColor)
 	setLogLevel(logLevel)
