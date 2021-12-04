@@ -7,28 +7,23 @@ package log
 // 日志对象
 var logger *Logger
 
-// 获取默认日志对象
-func Log() (*Logger){
-	if logger == nil {
-		logger = New("")
-	}
-
-	return logger
+func init()  {
+	logger = New("")
 }
 
 // 简易初始化，兼容之前版本
 // logFile: 日志文件
 // tags: 日志显示tag
 func Init(logFile string, tags []string) (err error) {
-	Log().cleanLogWay()
+	logger.cleanLogWay()
 
 	if len(logFile) > 0 {
-		Log().setLogFile(logFile, 30)
+		logger.setLogFile(logFile, 30)
 	} else {
-		Log().setLogConsole(true)
+		logger.setLogConsole(true)
 	}
 
-	Log().setTags(tags)
+	logger.setTags(tags)
 
 	return
 }
@@ -41,38 +36,38 @@ func Init(logFile string, tags []string) (err error) {
 // disableLogColor: 是否显示颜色
 // tags: 日志显示tag
 func InitLog(logWay string, logFile string, logLevel string, maxDays int64, disableLogColor bool, tags []string) {
-	Log().cleanLogWay()
+	logger.cleanLogWay()
 
 	if logWay == "all" {
-		Log().setLogFile(logFile, maxDays)
-		Log().setLogConsole(disableLogColor)
+		logger.setLogFile(logFile, maxDays)
+		logger.setLogConsole(disableLogColor)
 	} else if logWay == "file" {
-		Log().setLogFile(logFile, maxDays)
+		logger.setLogFile(logFile, maxDays)
 	} else if logWay == "console" {
-		Log().setLogConsole(disableLogColor)
+		logger.setLogConsole(disableLogColor)
 	}
 
-	Log().setLogLevel(logLevel)
-	Log().setTags(tags)
+	logger.setLogLevel(logLevel)
+	logger.setTags(tags)
 }
 
 // wrap log
 func Error(tag, format string, v ...interface{}) {
-	Log().Error(tag,format,v...)
+	logger.Error(tag,format,v...)
 }
 
 func Warn(tag, format string, v ...interface{}) {
-	Log().Warn(tag,format,v...)
+	logger.Warn(tag,format,v...)
 }
 
 func Info(tag, format string, v ...interface{}) {
-	Log().Info(tag,format,v...)
+	logger.Info(tag,format,v...)
 }
 
 func Debug(tag, format string, v ...interface{}) {
-	Log().Debug(tag,format,v...)
+	logger.Debug(tag,format,v...)
 }
 
 func Trace(tag, format string, v ...interface{}) {
-	Log().Trace(tag,format,v...)
+	logger.Trace(tag,format,v...)
 }
