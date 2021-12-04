@@ -65,7 +65,7 @@ func (logger *Logger) Init(logWay string, logFile string, logLevel string, maxDa
 // 设置显示tag
 func (logger *Logger) setTags(ts []string) {
 	logger.tags = make(map[string]bool)
-	if logger.tags != nil {
+	if ts!= nil {
 		for _, tag := range ts {
 			logger.tags[tag] = true
 		}

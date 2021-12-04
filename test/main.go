@@ -47,13 +47,15 @@ func main() {
 	// 输出错误日志: 2021/11/07 02:53:59.148 [E] [main.go:48]  [Tag:sys] Error
 	log.Error("sys", "Error")
 
-	// 以对象方式创建多个日志模块
-	mylog1 := log.New("mylog1")
-	mylog1.Init("all", "logs/mylog1.log", "info", 30, false, []string{"sys", "net"})
+	// 创建多个日志模块
+	// 错误日志
+	errorlog := log.New("error")
+	errorlog.Init("all", "logs/error.log", "error", 30, false, nil)
 
-	mylog2 := log.New("mylog2")
-	mylog2.Init("all", "logs/mylog2.log", "info", 30, false, []string{"sys", "net"})
+	// 独立日志模块
+	mylog := log.New("mylog")
+	mylog.Init("all", "logs/mylog.log", "info", 30, false, []string{"sys", "net"})
 
-	mylog1.Info("net", "MyLog1")
-	mylog2.Info("sys", "MyLog2")
+	errorlog.Error("net", "Error Log")
+	mylog.Info("sys", "MyLog")
 }

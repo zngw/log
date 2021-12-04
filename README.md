@@ -70,6 +70,15 @@ go get -u github.com/zngw/log
 ```go
     log.InitLog("all", "logs/file.log", "info", 30, false, []string{"sys", "net"})
 ```
+
+# 以创建多个日志模块
+可以使用`log.New("日志模块名")`方法创建多个日志模块，为不同的功能记录不同的日志文件和格式。
+如可以将错误日志独立出来，也可以根据不同的逻辑写不同的日志等
+
+```go
+	errorlog := log.New("error")
+	errorlog.Init("all", "logs/error.log", "error", 30, false, nil)
+```
 	
 # Quick-start
 ```go
@@ -81,7 +90,30 @@ import (
 
 func main() {
 
-	// 初始化
+	// 日志有三种方式初始化。
+
+	// 第一种
+	// 不初始化，直接使用
+	// 这时候会用到默认init中的参数初始化
+	// 默认为终端、文件双重显示；日志文件为`logs/file.log`；保留30天；显示所有tags
+
+	// 第二种
+	// 简易初始化，兼容最初版本的日志接口，只设置日志文件和tags
+	// 日志文件为空时为终端显示，
+	// 设置文件时只输出到文件，日志文件保留30天
+	//err := log.Init("logs/file.log", nil)
+	//if err != nil {
+	//	panic(err)
+	//}
+
+	// 第三种
+	// 完整初始化
+	// logWay: all-输出到文件和控制台;file-输出到文件；console-输出到控制台
+	// logFile: 日志文件
+	// logLevel: 日志等级
+	// maxDays: 日志保留天数
+	// disableLogColor: 是否显示颜色
+	// tags: 日志显示tag
 	log.InitLog("all", "logs/file.log", "info", 30, false, []string{"sys", "net"})
 
 	// 输出： 2021/11/07 02:53:59.148 [I] [main.go:39]  [Tag:sys] Hello World
@@ -96,15 +128,16 @@ func main() {
 	// 输出错误日志: 2021/11/07 02:53:59.148 [E] [main.go:48]  [Tag:sys] Error
 	log.Error("sys", "Error")
 
-    // 以对象方式创建多个日志模块
-	mylog1 := log.New("mylog1")
-	mylog1.Init("all", "logs/mylog1.log", "info", 30, false, []string{"sys", "net"})
+	// 创建多个日志模块
+	// 错误日志
+	errorlog := log.New("error")
+	errorlog.Init("all", "logs/error.log", "error", 30, false, nil)
 
-	mylog2 := log.New("mylog2")
-	mylog2.Init("all", "logs/mylog2.log", "info", 30, false, []string{"sys", "net"})
+	// 独立日志模块
+	mylog := log.New("mylog")
+	mylog.Init("all", "logs/mylog.log", "info", 30, false, []string{"sys", "net"})
 
-	mylog1.Info("net", "MyLog1")
-	mylog2.Info("sys", "MyLog2")
-
+	errorlog.Error("net", "Error Log")
+	mylog.Info("sys", "MyLog")
 }
 ```
