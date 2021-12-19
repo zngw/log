@@ -9,7 +9,7 @@ var logger *Logger
 
 func init()  {
 	logger = New("")
-	logger.log.SetLogFuncCallDepth(5)
+	logger.log.SetLogFuncCallDepth(4)
 }
 
 // 简易初始化，兼容之前版本
