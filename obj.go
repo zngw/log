@@ -156,7 +156,7 @@ func (logger *Logger) Warn(tag, format string, v ...interface{}) {
 			format = fmt.Sprintf(format, v...)
 		}
 
-		logger.log.Warn(tag+format, v...)
+		logger.log.Warn(tag+format)
 	}
 }
 
@@ -167,7 +167,7 @@ func (logger *Logger) Info(tag, format string, v ...interface{}) {
 			format = fmt.Sprintf(format, v...)
 		}
 
-		logger.log.Info(tag+format, v...)
+		logger.log.Info(tag+format)
 	}
 }
 
@@ -178,7 +178,7 @@ func (logger *Logger) Debug(tag, format string, v ...interface{}) {
 			format = fmt.Sprintf(format, v...)
 		}
 
-		logger.log.Debug(tag+format, v...)
+		logger.log.Debug(tag+format)
 	}
 }
 
@@ -189,6 +189,6 @@ func (logger *Logger) Trace(tag, format string, v ...interface{}) {
 			format = fmt.Sprintf(format, v...)
 		}
 
-		logger.log.Trace(tag+format, v...)
+		logger.log.Trace(tag+format)
 	}
 }
