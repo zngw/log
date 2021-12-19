@@ -29,7 +29,7 @@ func New(name string) (logger *Logger) {
 
 	// 如果你的应用自己封装了调用 log 包,那么需要设置 SetLogFuncCallDepth
 	// 默认是 2,也就是直接调用的层级,如果你封装了多层,那么需要根据自己的需求进行调整.
-	logger.log.SetLogFuncCallDepth(3)
+	logger.log.SetLogFuncCallDepth(4)
 
 	// 默认初始化输入文件参数
 	// 用于不调用Init、InitLog初始化时可直接调用log
