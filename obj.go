@@ -141,13 +141,21 @@ func (logger *Logger) getTag(tag string) (msg string, show bool) {
 func (logger *Logger) Error(tag, format string, v ...interface{}) {
 	tag, show := logger.getTag(tag)
 	if show {
-		logger.log.Error(tag+format, v...)
+		if len(v) > 0 {
+			format = fmt.Sprintf(format, v...)
+		}
+
+		logger.log.Error(tag+format)
 	}
 }
 
 func (logger *Logger) Warn(tag, format string, v ...interface{}) {
 	tag, show := logger.getTag(tag)
 	if show {
+		if len(v) > 0 {
+			format = fmt.Sprintf(format, v...)
+		}
+
 		logger.log.Warn(tag+format, v...)
 	}
 }
@@ -155,6 +163,10 @@ func (logger *Logger) Warn(tag, format string, v ...interface{}) {
 func (logger *Logger) Info(tag, format string, v ...interface{}) {
 	tag, show := logger.getTag(tag)
 	if show {
+		if len(v) > 0 {
+			format = fmt.Sprintf(format, v...)
+		}
+
 		logger.log.Info(tag+format, v...)
 	}
 }
@@ -162,6 +174,10 @@ func (logger *Logger) Info(tag, format string, v ...interface{}) {
 func (logger *Logger) Debug(tag, format string, v ...interface{}) {
 	tag, show := logger.getTag(tag)
 	if show {
+		if len(v) > 0 {
+			format = fmt.Sprintf(format, v...)
+		}
+
 		logger.log.Debug(tag+format, v...)
 	}
 }
@@ -169,6 +185,10 @@ func (logger *Logger) Debug(tag, format string, v ...interface{}) {
 func (logger *Logger) Trace(tag, format string, v ...interface{}) {
 	tag, show := logger.getTag(tag)
 	if show {
+		if len(v) > 0 {
+			format = fmt.Sprintf(format, v...)
+		}
+
 		logger.log.Trace(tag+format, v...)
 	}
 }
