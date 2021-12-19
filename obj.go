@@ -6,7 +6,7 @@ package log
 
 import (
 	"fmt"
-	"github.com/beego/beego/v2/adapter/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 type Logger struct {
