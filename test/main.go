@@ -50,11 +50,11 @@ func main() {
 	// 创建多个日志模块
 	// 错误日志
 	errorlog := log.New("error")
-	errorlog.Init("all", "logs/error.log", "error", 30, false, nil)
+	errorlog.Init("file", "logs/error.log", "error", 30, false, nil)
 
 	// 独立日志模块
 	mylog := log.New("mylog")
-	mylog.Init("all", "logs/mylog.log", "info", 30, false, []string{"sys", "net"})
+	mylog.Init("file", "logs/mylog.log", "info", 30, false, []string{"sys", "net"})
 
 	errorlog.Error("net", "Error Log")
 	mylog.Info("sys", "MyLog")

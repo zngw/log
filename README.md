@@ -27,7 +27,7 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/zngw/log)](https://github.com/zngw/log)
 
 # 说明
-封装beego日志模块, 添加tags显示标签
+日志模块，详细情可以参考项目[https://github.com/zngw/golib](https://github.com/zngw/golib)
 
 # 安装
 
